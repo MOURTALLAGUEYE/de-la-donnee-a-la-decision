@@ -15,19 +15,39 @@ cadrage complet (coûts d'erreur, métrique, seuil de réussite).
 - Détails du profiling et de l'EDA : `reports/M1_bivariate_*.png`,
   `notebooks/01_eda.py`.
 
+### Note sur la source des données
+Le dataset est téléchargé automatiquement depuis un miroir GitHub
+(IBM/telco-customer-churn-on-icp4d) strictement identique au dataset
+Kaggle `blastchar/telco-customer-churn` référencé dans le sujet
+(mêmes 7043 lignes, mêmes 21 colonnes) — utilisé pour permettre un
+téléchargement scripté reproductible (`src/download_data.py`) sans
+authentification Kaggle.
+
 ## Modèle
 - Pipeline scikit-learn unique (`src/pipeline.py`) : feature engineering
   (`NumServices`, `ChargesPerTenure`) + imputation + scaling + one-hot
   encoding, `fit` exclusivement sur le train — aucune fuite de données.
-- Régression logistique, optimisée par Optuna (60 essais,
-  `src/tune_and_explain.py`), calibrée (`CalibratedClassifierCV`,
-  méthode isotonique).
+- Régression logistique, optimisée par Optuna (60 essais, avec
+  MedianPruner, `src/tune_and_explain.py`), calibrée
+  (`CalibratedClassifierCV`, méthode isotonique).
 - Performance : F1 (CV 5 plis) ≈ 0.636 ; seuil de décision optimisé
   (F2) ≈ 0.119, rappel ≈ 0.93 sur la classe churn.
 - Détails complets : `reports/M2_pipeline.md`, `reports/M3_benchmark.md`,
   `reports/M4_optimisation.md`.
 
 ## Structure du dépôt
+De la Donnée à la Décision/
+├── data/ CSV brut (téléchargé, non versionné)
+├── notebooks/ 01_eda.py — exploration (Mission 1)
+├── src/ pipeline.py, download_data.py, train_baseline.py,
+│ train_models.py, tune_and_explain.py
+├── tests/ test_pipeline.py — 6 tests pytest
+├── api/ main.py — API FastAPI (3 endpoints)
+├── model/ pipeline_final.joblib, decision_threshold.joblib,
+│ MODEL_CARD.md
+├── reports/ rapport détaillé, mission par mission
+├── requirements.txt
+└── README.md
 ## Installation
 
 ```powershell
@@ -70,4 +90,4 @@ Optuna). Le pipeline sérialisé est rechargé et testé automatiquement
 (`tests/test_pipeline.py::test_reloaded_pipeline_is_deterministic`).
 
 ## Auteur
-MOURTALLA — Master 1 DSIA, ISI — Année universitaire 2025–2026
+MOURTALLA GUEYE — Master 1 DSIA, ISI — Année universitaire 2025–2026
