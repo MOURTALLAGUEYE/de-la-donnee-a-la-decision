@@ -1,0 +1,27 @@
+# Environnement virtuel
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+
+# Données (volumineuses, téléchargées via src/download_data.py)
+data/*.csv
+
+# Modèle entraîné (volumineux, régénéré via src/tune_and_explain.py)
+model/*.joblib
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Éditeur / OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs / environnement
+.env
