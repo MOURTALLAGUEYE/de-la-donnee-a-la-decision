@@ -70,4 +70,4 @@ Optuna). Le pipeline sérialisé est rechargé et testé automatiquement
 (`tests/test_pipeline.py::test_reloaded_pipeline_is_deterministic`).
 
 ## Auteur
-MOURTALLA GUEYE— Master 1 DSIA, ISI — Année universitaire 2025–2026
+MOURTALLA GUEYE — Master 1 DSIA, ISI — Année universitaire 2025–2026
