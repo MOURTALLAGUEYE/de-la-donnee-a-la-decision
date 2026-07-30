@@ -36,18 +36,6 @@ authentification Kaggle.
   `reports/M4_optimisation.md`.
 
 ## Structure du dépôt
-De la Donnée à la Décision/
-├── data/ CSV brut (téléchargé, non versionné)
-├── notebooks/ 01_eda.py — exploration (Mission 1)
-├── src/ pipeline.py, download_data.py, train_baseline.py,
-│ train_models.py, tune_and_explain.py
-├── tests/ test_pipeline.py — 6 tests pytest
-├── api/ main.py — API FastAPI (3 endpoints)
-├── model/ pipeline_final.joblib, decision_threshold.joblib,
-│ MODEL_CARD.md
-├── reports/ rapport détaillé, mission par mission
-├── requirements.txt
-└── README.md
 ## Installation
 
 ```powershell
