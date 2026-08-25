@@ -1,3 +1,5 @@
+![Tests](https://github.com/MOURTALLAGUEYE/de-la-donnee-a-la-decision/actions/workflows/tests.yml/badge.svg)
+
 # De la Donnée à la Décision
 Projet final — Cours pratique de Supervised Learning, Master IA
 
@@ -36,12 +38,13 @@ authentification Kaggle.
   `reports/M4_optimisation.md`.
 
 ## Structure du dépôt
+
 ## Installation
 
 ```powershell
 python -m venv .venv
 .venv\Scripts\Activate.ps1
-pip install --only-binary=:all: -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Reproduire le pipeline complet
@@ -54,6 +57,14 @@ python src\tune_and_explain.py    # Mission 4 — tuning, calibration, SHAP
                                    # -> sauvegarde model/pipeline_final.joblib
 pytest tests\ -v                  # Mission 5 — tests
 ```
+
+## Intégration continue (CI)
+Un workflow GitHub Actions (`.github/workflows/tests.yml`) rejoue
+automatiquement l'ensemble du pipeline (téléchargement des données,
+réentraînement, sérialisation) et la suite de tests pytest à chaque
+`push` sur la branche `main`. Le badge en haut de ce README reflète
+l'état du dernier run — vert si les 6 tests passent, rouge sinon.
+Historique des runs : onglet **Actions** du dépôt GitHub.
 
 ## Lancer l'API
 
@@ -75,7 +86,8 @@ Voir `reports/M5_monitoring.md` pour les signaux à surveiller
 ## Reproductibilité
 `random_state=42` fixé partout (split, modèles, validation croisée,
 Optuna). Le pipeline sérialisé est rechargé et testé automatiquement
-(`tests/test_pipeline.py::test_reloaded_pipeline_is_deterministic`).
+(`tests/test_pipeline.py::test_reloaded_pipeline_is_deterministic`),
+en local comme en CI.
 
 ## Auteur
-MOURTALLA GUEYE — Master 1 DSIA, ISI — Année universitaire 2025–2026
+MOURTALLA GUEYE — Master 1 DSIA, ISI — Année universitaire 2025 – 2026
